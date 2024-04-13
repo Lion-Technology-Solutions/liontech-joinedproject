@@ -26,7 +26,8 @@ node{
    }
    stage('approval required4production'){
     sh "echo application ready for deployment to prod'"
-    timeout(time:5, unit: 'days')
-    input message: "feature is ready please approve"
+    timeout(time:5, unit: 'days'){
+        input message: "feature is ready please approve"
+    }
    }
 }
