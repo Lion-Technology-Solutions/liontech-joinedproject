@@ -1,0 +1,34 @@
+node{
+   def  mavenHome = tool name :'maven'
+   stage('clone from scm'){
+    git branch: 'jack', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
+   }
+
+   stage('test build & package sourcecode'){
+    sh "${mavenHome}/bin/mvn clean package"
+   }
+
+   stage('code qualaity analysis'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
+   }
+
+   stage('deploy to dev'){
+    sh "echo 'deploy to dev environment'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jacl', war: 'target/*.war'
+   }
+    stage('deploy to test'){
+    sh "echo 'deploy to test environment'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war'
+   }
+   stage('deploy to UAT or staging'){
+    sh "echo 'deploy to test environment'"
+         
+   }
+   stage('approval required4production'){
+    sh "echo 'application ready for deployment to prod'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war'
+    timeout(time: 5, unit: 'DAYS'){
+        input message: "feature is ready please approve"
+    }
+   }
+}
