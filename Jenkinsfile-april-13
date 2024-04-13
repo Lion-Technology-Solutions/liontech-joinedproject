@@ -22,10 +22,11 @@ node{
    }
    stage('deploy to UAT or staging'){
     sh "echo 'deploy to test environment'"
-    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war' 
+         
    }
    stage('approval required4production'){
     sh "echo application ready for deployment to prod'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war'
     timeout(time:5, unit: 'days'){
         input message: "feature is ready please approve"
     }
