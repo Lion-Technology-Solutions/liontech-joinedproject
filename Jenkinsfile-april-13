@@ -10,5 +10,14 @@ node{
 
    stage('code qualaity analysis'){
     sh "${mavenHome}/bin/mvn sonar:sonar"
+   }
+
+ stage('deploy to dev'){
+    sh "echo 'deploy to dev environment'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war'
+   }
+    stage('deploy to test'){
+    sh "echo 'deploy to test environment'"
+    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'april-13-jack', war: 'target/*.war'
    } 
 }
