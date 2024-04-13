@@ -6,5 +6,9 @@ node{
 
    stage('test build & package sourcecode'){
     sh "${mavenHome}/bin/mvn clean package"
+   }
+
+   stage('code qualaity analysis'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
    } 
 }
