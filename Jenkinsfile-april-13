@@ -2,5 +2,9 @@ node{
    def  mavenHome = tool name :'maven'
    stage('clone from scm'){
     git branch: 'jack', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
+   }
+
+   stage('test build & package sourcecode'){
+    sh "${mavenHome}/bin/mvn clean package"
    } 
 }
