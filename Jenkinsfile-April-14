@@ -9,6 +9,6 @@ node{
     }
 
     stage('codequalityanalysis'){
-        sh "echo 'deploy for quality analsis'"
+       sh "${mavenHome}/bin/mvn sonar:sonar" 
     }
 }
