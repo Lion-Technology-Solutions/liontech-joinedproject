@@ -1,15 +1,15 @@
 clone{
-  def mavenHome  =  tool name :'maven'
+  def mavenHome  =  tool name : 'maven'
    stage('clone from SCM'){
    git branch: 'mj', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
   }
 
   stage('build and package sourcecode'){
-   sh "${mavenHome}/bin/mvn clean package"
+   sh "${mavenHome}/bin/mvn  clean package"
   }
 
   stage('code quality analysis'){
-   sh "${mavenHome}/bin/mvn sonar:sonar"
+   sh "${mavenHome}/bin/mvn  sonar:sonar"
   }
 
   stage('store artifact'){
