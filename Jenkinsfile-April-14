@@ -10,9 +10,6 @@ node{
 
     stage('code quality analysis'){
         sh "${mavenHome}/bin/mvn sonar:sonar"
+        shdeploy adapters: [tomcat9(path: '', url: 'http://localhost:8009/')], contextPath: 'Jenkinsfile-April-14', war: 'target/*.war' "echo 'deploy to tomcat dev environment'"
     }
-
-   stage('store artifact to nexus'){
-        sh "${mavenHome}/bin/mvn deploy"
-    } 
-  }
+}
