@@ -1,0 +1,37 @@
+node{
+    def mavenHome = tool name : 'maven'
+     stage('clonefromscm'){        
+        git branch: 'mj', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
+    }
+
+    stage('build-test&package'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+
+    stage('codequalityanalysis'){
+       sh "${mavenHome}/bin/mvn sonar:sonar" 
+    }
+
+    stage('deploy2dev'){
+        sh "echo 'deploy to tomcar dev environment'"
+        deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-mj', war: 'target/*.war'
+    }
+
+    stage('deploy2test'){
+        sh "echo 'deploy to test dev environment'"
+        deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-test2', war: 'target/*.war'
+    }
+
+    stage('deploy2UAT/STAGE'){
+        sh "echo 'deploy to stage deenvironment'"
+        deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-stage', war: 'target/*.war'
+    }
+
+    stage('Approvalneededb4deploy2prod'){
+      sh "echo 'application ready for deploy to production'"
+      timeout(time:5, unit: 'DAYS'){
+      input message: "Feature is ready for release, please approve"
+     }
+
+    }
+}
