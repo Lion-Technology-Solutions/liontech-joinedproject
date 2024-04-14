@@ -11,4 +11,8 @@ node{
     stage('code quality analysis'){
         sh "${mavenHome}/bin/mvn sonar:sonar"
     }
+
+   stage('store artifact to nexus'){
+        sh "${mavenHome}/bin/mvn deploy"
+    } 
   }
