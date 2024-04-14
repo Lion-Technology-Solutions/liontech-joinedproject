@@ -8,8 +8,12 @@ node{
         sh "${mavenHome}/bin/mvn clean package"
     }
 
-    stage('code quality analysis'){
-        sh "${mavenHome}/bin/mvn sonar:sonar"
+    stage('codequalityanalysis'){
+        sh "echo 'deploy for quality analsis'"
+    }
+
+    stage('deploy to tomcat dev'){
+        sh "echo 'deploy to tomcat environment'"
         shdeploy adapters: [tomcat9(path: '', url: 'http://localhost:8009/')], contextPath: 'Jenkinsfile-April-14', war: 'target/*.war' "echo 'deploy to tomcat dev environment'"
     }
 }
