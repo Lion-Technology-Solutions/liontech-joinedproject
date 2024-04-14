@@ -21,4 +21,9 @@ node{
         sh "echo 'deploy to test dev environment'"
         deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-test', war: 'target/*.war'
     }
+
+    stage('deploy2UAT/STAGE'){
+        sh "echo 'deploy to stage deenvironment'"
+        deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-stage', war: 'target/*.war'
+    }
 }
