@@ -1,22 +1,22 @@
-clone{
-  def mavenHome  =  tool name : 'maven'
+done{
+  def mavenHome  =  tool name :'maven'
    stage('clone from SCM'){
    git branch: 'mj', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
   }
 
   stage('build and package sourcecode'){
-   sh "${mavenHome}/bin/mvn  clean package"
+   sh "${mavenHome}/bin/mvn clean package"
   }
 
   stage('code quality analysis'){
-   sh "${mavenHome}/bin/mvn  sonar:sonar"
+   sh "${mavenHome}/bin/mvn sonar:sonar"
   }
 
   stage('store artifact'){
    sh "$(mavenHome)/bin/mvn deploy"
   }
 
-  stage('deploy to test env'){
+ stage('deploy to test env'){
    sh "echo 'deploy to test environment'"
    deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'mj', war: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
   }
