@@ -11,4 +11,9 @@ node{
     stage('codequalityanalysis'){
        sh "${mavenHome}/bin/mvn sonar:sonar" 
     }
+
+    stage('deploy2dev'){
+        sh "echo 'deploy to tomcar dev environment'"
+        deploy adapters: [tomcat9(credentialsId: '90992efa-eb52-4eed-89c9-c14bbd248a04', path: '', url: 'http://localhost:8009/')], contextPath: 'April-14-mj', war: 'target/*.war'
+    }
 }
