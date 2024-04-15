@@ -11,5 +11,9 @@ node{
   git branch: 'class24', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
  }
 
+ stage('build&package'){      //Jenkins clones the source then builds  the artifact
+  sh "${mavenHome}/bin/mvn      clean package"
+ }
+
 
 }
