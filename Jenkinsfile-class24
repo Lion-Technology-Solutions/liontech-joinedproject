@@ -1,0 +1,15 @@
+//define the software build process in the gile 
+// jenkins is going to clone the source code and then
+// before Jenkins builds it must fine the build tool.     
+// Lets define the Jenkins/ Maven build home directory   
+
+
+node{
+
+ def  mavenHome   =  tool name: 'maven3.96'
+ stage('clonefromscm'){
+  git branch: 'class24', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
+ }
+
+
+}
