@@ -15,5 +15,9 @@ node{
   sh "${mavenHome}/bin/mvn      clean package"
  }
 
+ stage('Inspection'){      //Jenkins  automates for code quality inspection
+  sh "${mavenHome}/bin/mvn      sonar:sonar"
+ }
+
 
 }
