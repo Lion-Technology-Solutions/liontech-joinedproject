@@ -1,15 +1,15 @@
-
 pipeline{
-      agent any  
-      tools{
-            maven "maven3.9.8"
-      }
+  agent any 
+  tools{
+    maven "maven3.9.8"
+  }
+  stages{
+    stage('clonefromscm'){
+      steps{
+        sh "echo  Jenkins is clonefromscm"
+        git branch: 'class26', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
 
-      stages{
-            stage('clonefromscm')
-              steps{
-                  sh "echo cloning latest changes from scm"
-                  git branch: 'class26', url: 'https://github.com/Lion-Technology-Solutions/liontech-joinedproject.git'
-              }
       }
+    }
+  }
 }
