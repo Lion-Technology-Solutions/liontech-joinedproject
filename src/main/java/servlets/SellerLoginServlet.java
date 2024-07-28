@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bittercode.constant.classesConstants;
+import com.bittercode.constant.liontechonlineConstants;
 import com.bittercode.constant.db.UsersDBConstants;
 import com.bittercode.model.User;
 import com.bittercode.model.UserRole;
@@ -22,7 +22,7 @@ public class SellerLoginServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         PrintWriter pw = res.getWriter();
-        res.setContentType(classesConstants.CONTENT_TYPE_TEXT_HTML);
+        res.setContentType(liontechonlineConstants.CONTENT_TYPE_TEXT_HTML);
         String uName = req.getParameter(UsersDBConstants.COLUMN_USERNAME);
         String pWord = req.getParameter(UsersDBConstants.COLUMN_PASSWORD);
         try {
@@ -31,7 +31,7 @@ public class SellerLoginServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("SellerHome.html");
 
                 rd.include(req, res);
-                pw.println("    <div id=\"topmid\"><h1>Welcome to Online <br>Book Store</h1></div>\r\n"
+                pw.println("    <div id=\"topmid\"><h1>Welcome to liontechonline <br>Book Store</h1></div>\r\n"
                         + "    <br>\r\n"
                         + "    <table class=\"tab\">\r\n"
                         + "        <tr>\r\n"
