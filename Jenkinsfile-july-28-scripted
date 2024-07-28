@@ -9,9 +9,9 @@ node{
     sh "${mavenHome}/bin/mvn  clean package"
   }
 
-  stage('runcodequalityanalysis'){
-    sh "${mavenHome}/bin/mvn  sonar:sonar"
-  }
+  //stage('runcodequalityanalysis'){
+    //sh "${mavenHome}/bin/mvn  sonar:sonar"
+  //}
 
   stage('upload artifact to nexus'){
     "${mavenHome}/bin/mvn  clean deploy"
