@@ -21,11 +21,20 @@ pipeline{
         sh "mvn clean package"
       }
     }
-    stage('sonarqube Code Quality Analyis'){
+    
+    //stage('sonarqube Code Quality Analyis'){
+      //steps{
+        //sh "echo 'Performing code Quality Analyis'"
+        //sh  "mvn sonar:sonar"
+      //}
+    //}
+
+    stage('uploadArtifacttoNexus'){
       steps{
-        sh "echo 'Performing code Quality Analyis'"
-        sh  "mvn sonar:sonar"
+        sh "mvn deploy"
       }
     }
+
+
   }
 }
