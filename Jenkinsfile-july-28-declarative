@@ -21,5 +21,11 @@ pipeline{
         sh "mvn clean package"
       }
     }
+    stage('sonarqube Code Quality Analyis'){
+      steps{
+        sh "echo 'Performing code Quality Analyis'"
+        sh  "mvn sonar:sonar"
+      }
+    }
   }
 }
