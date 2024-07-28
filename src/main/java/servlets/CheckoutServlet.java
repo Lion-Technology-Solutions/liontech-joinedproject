@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bittercode.constant.liontechonlineConstants;
+import com.bittercode.constant.onlineConstants;
 import com.bittercode.model.UserRole;
 import com.bittercode.util.StoreUtil;
 
 public class CheckoutServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         PrintWriter pw = res.getWriter();
-        res.setContentType(liontechonlineConstants.CONTENT_TYPE_TEXT_HTML);
+        res.setContentType(onlineConstants.CONTENT_TYPE_TEXT_HTML);
         if (!StoreUtil.isLoggedIn(UserRole.CUSTOMER, req.getSession())) {
             RequestDispatcher rd = req.getRequestDispatcher("CustomerLogin.html");
             rd.include(req, res);

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bittercode.constant.liontechonlineConstants;
+import com.bittercode.constant.onlineConstants;
 import com.bittercode.constant.ResponseCode;
 import com.bittercode.constant.db.BooksDBConstants;
 import com.bittercode.model.Book;
@@ -23,7 +23,7 @@ public class UpdateBookServlet extends HttpServlet {
 
     public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         PrintWriter pw = res.getWriter();
-        res.setContentType(liontechonlineConstants.CONTENT_TYPE_TEXT_HTML);
+        res.setContentType(onlineConstants.CONTENT_TYPE_TEXT_HTML);
 
         if (!StoreUtil.isLoggedIn(UserRole.SELLER, req.getSession())) {
             RequestDispatcher rd = req.getRequestDispatcher("SellerLogin.html");

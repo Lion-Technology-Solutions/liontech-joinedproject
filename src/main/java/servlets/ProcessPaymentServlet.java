@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bittercode.constant.liontechonlineConstants;
+import com.bittercode.constant.onlineConstants;
 import com.bittercode.model.Book;
 import com.bittercode.model.Cart;
 import com.bittercode.model.UserRole;
@@ -26,7 +26,7 @@ public class ProcessPaymentServlet extends HttpServlet {
     @SuppressWarnings("unchecked")
     public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         PrintWriter pw = res.getWriter();
-        res.setContentType(liontechonlineConstants.CONTENT_TYPE_TEXT_HTML);
+        res.setContentType(onlineConstants.CONTENT_TYPE_TEXT_HTML);
         if (!StoreUtil.isLoggedIn(UserRole.CUSTOMER, req.getSession())) {
             RequestDispatcher rd = req.getRequestDispatcher("CustomerLogin.html");
             rd.include(req, res);

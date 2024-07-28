@@ -1,6 +1,6 @@
 package com.bittercode.constant;
 
-public interface liontechonlineConstants {
+public interface onlineConstants {
 	public static String CONTENT_TYPE_TEXT_HTML = "text/html";
 	
 	
