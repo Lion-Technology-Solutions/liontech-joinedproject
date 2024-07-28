@@ -42,7 +42,7 @@ node{
     }
   }
 
-  stage(Deploy2PROD){
+  stage('Deploy2PROD'){
     sh "echo 'deploying to prod env'"
     deploy adapters: [tomcat9(credentialsId: 'TOMCAT-CRED', path: '', url: 'http://3.91.204.75:8009/')], contextPath: 'prod', war: 'target/*.war'
   }
